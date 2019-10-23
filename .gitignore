@@ -1,0 +1,12 @@
+/.idea
+/vendor
+/vendor/*
+!/var/logs
+/var/logs/*
+!/var/cache
+/var/cache/*
+!/var/sessions
+/var/sessions/*
+/phpunit.xml
+/push_doc.bat
+/app/config/parameters.yml

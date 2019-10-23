@@ -1,0 +1,18 @@
+# 想使用security的话,先参考下这个链接:
+# http://symfony.com/doc/current/security.html
+security:
+    providers:
+        in_memory:
+            memory: ~
+    firewalls:
+        # 为assets和profiler禁用身份验证,可以根据需要进行调整
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            anonymous: ~
+            # 激活http_basic、form_login的身份验证的方法
+            # http://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+            # http_basic: ~
+            # form_login: ~

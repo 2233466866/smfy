@@ -1,0 +1,4 @@
+services:
+#    demo:
+#        class: AppBundle\Service\DemoService
+#        arguments: ["@服务", "常量", "%配置%"]

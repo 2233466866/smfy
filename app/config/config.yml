@@ -1,0 +1,118 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+    - { resource: services.yml }
+    - { resource: "@AppBundle/Resources/config/services.yml" }
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    locale: en
+
+framework:
+    #esi:             ~
+    #translator:      { fallbacks: ["%locale%"] }
+    secret:          "%secret%"
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
+    form:            ~
+    csrf_protection: ~
+    validation:      { enable_annotations: true }
+    #serializer:      { enable_annotations: true }
+    templating:
+        engines: ['twig']
+    default_locale:  "%locale%"
+    trusted_hosts:   ~
+    trusted_proxies: ~
+    session:
+        # http://symfony.com/doc/current/reference/configuration/framework.html#handler-id
+        handler_id:  session.handler.native_file
+        save_path:   "%kernel.root_dir%/../var/sessions/%kernel.environment%"
+    fragments:       ~
+    http_method_override: true
+    assets: ~
+    php_errors:
+        log: true
+
+# Twig Configuration
+twig:
+    debug:            "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        default_connection: default
+        connections:
+            # 默认数据库连接
+            default:
+                driver:   pdo_mysql
+                host:     '%database_host1%'
+                port:     '%database_port1%'
+                dbname:   '%database_name1%'
+                user:     '%database_user1%'
+                password: '%database_password1%'
+                charset:  UTF8
+                mapping_types:
+                    enum: string
+            # 辅助数据库连接
+            slave:
+                driver:   pdo_mysql
+                host:     '%database_host2%'
+                port:     '%database_port2%'
+                dbname:   '%database_name2%'
+                user:     '%database_user2%'
+                password: '%database_password2%'
+                charset:  UTF8
+                mapping_types:
+                    enum: string
+
+# SncRedis Configuration
+snc_redis:
+    clients:
+        default:
+            type: predis
+            alias: default
+            dsn: 'redis://%redis_host1%:%redis_port1%'
+            options:
+                prefix: '%redis_prefix1%:'
+        other:
+            type: predis
+            alias: other
+            dsn: 'redis://%redis_host2%:%redis_port2%'
+            options:
+                prefix: '%redis_prefix2%:'
+
+# Swiftmailer Configuration
+swiftmailer:
+    default_mailer: default
+    mailers:
+        default:
+            transport:            '%mailer_tspt1%'
+            username:             '%mailer_user1%'
+            password:             '%mailer_pswd1%'
+            host:                 '%mailer_host1%'
+            port:                 '%mailer_port1%'
+            sender_address:       '%mailer_user1%'
+            logging:              '%kernel.debug%'
+            encryption:           ssl
+            spool:
+                type:                 memory
+            antiflood:
+                threshold:            99
+                sleep:                0
+        other:
+            transport:            '%mailer_tspt2%'
+            username:             '%mailer_user2%'
+            password:             '%mailer_pswd2%'
+            host:                 '%mailer_host2%'
+            port:                 '%mailer_port2%'
+            sender_address:       '%mailer_user2%'
+            logging:              '%kernel.debug%'
+            encryption:           ssl
+            spool:
+                type:                 memory
+            antiflood:
+                threshold:            99
+                sleep:                0

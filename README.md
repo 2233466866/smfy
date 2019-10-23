@@ -1,2 +1,3 @@
-# symfony3.2
-symfony3.2官方优化版
+## 介绍
+
+1. Symfony3.2精简可扩展版
